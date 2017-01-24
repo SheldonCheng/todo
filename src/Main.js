@@ -83,9 +83,13 @@ class Main extends Component {
         <TaskForm input={this.state.inputString} handleChange={this.onChange} handleSubmit={this.onSubmit}>
         </TaskForm>
         <div>{projectsCount} projects</div>
-        <List id="todo" items={this.state.todo} title="To do" dragStartHandler={this.onDragStart} dragOverItemHandler={this.onDragOverItem} dragOverHandler={this.onDragOver}></List>
-        <List id="progress" items={this.state.progress} title="In Progress" dragStartHandler={this.onDragStart} dragOverItemHandler={this.onDragOverItem} dragOverHandler={this.onDragOver}></List>
-        <List id="done" items={this.state.done} title="Done" dragStartHandler={this.onDragStart} dragOverItemHandler={this.onDragOverItem} dragOverHandler={this.onDragOver}></List>
+        { [this.state.todo, this.state.progress, this.state.done].map( (item, i) => {
+          const type = i === 0 ? 'todo' : i === 1 ? 'progress' : 'done';
+          const title = i === 0 ? 'To do' : i === 1 ? 'In Progress' : 'Done';
+          return (
+            <List key={i} id={type} items={item} title={title} dragStartHandler={this.onDragStart} dragOverItemHandler={this.onDragOverItem} dragOverHandler={this.onDragOver}></List>
+          )
+        }) }
       </div>
     )
   }
