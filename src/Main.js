@@ -79,7 +79,7 @@ class Main extends Component {
   render() {
     var projectsCount = (this.state.todo.concat(this.state.progress).concat(this.state.done)).length;
     return (
-      <div onDragOver={this.onDragOver}>
+      <div>
         <TaskForm input={this.state.inputString} handleChange={this.onChange} handleSubmit={this.onSubmit}>
         </TaskForm>
         <div>{projectsCount} projects</div>
