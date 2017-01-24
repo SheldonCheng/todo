@@ -8,8 +8,8 @@ class Main extends Component {
     super();
     this.state = {
       inputString: '',
-      todo : [{ id: "task-0", title: 'first'}, { id: "task-1", title: '2nd'}, { id: "task-2", title: 'Third'}],
-      progress: [ { id: 'task-a', title: 'a' }, { id: 'task-b', title: 'b'} ],
+      todo : [],
+      progress: [],
       done: []
     }
     
