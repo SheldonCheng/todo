@@ -1,0 +1,13 @@
+.header form {
+  flex: 1;
+}
+
+.header label {
+  margin-right: 2em;
+  font-size: 18px;
+}
+
+#add-task {
+  font-size: 16px;
+  padding: 0.3em;
+}

@@ -80,9 +80,16 @@ class Main extends Component {
     var projectsCount = (this.state.todo.concat(this.state.progress).concat(this.state.done)).length;
     return (
       <div>
-        <TaskForm input={this.state.inputString} handleChange={this.onChange} handleSubmit={this.onSubmit}>
-        </TaskForm>
-        <div>{projectsCount} projects</div>
+        <div className="header">
+          <TaskForm input={this.state.inputString} handleChange={this.onChange} handleSubmit={this.onSubmit}>
+          </TaskForm>
+          <div className="header-counter">
+            <span>TOTAL</span>
+            <div className="counter"><strong>{projectsCount}</strong> projects</div>
+          </div>
+        </div>
+
+        <div className="lists">
         { [this.state.todo, this.state.progress, this.state.done].map( (item, i) => {
           const type = i === 0 ? 'todo' : i === 1 ? 'progress' : 'done';
           const title = i === 0 ? 'To do' : i === 1 ? 'In Progress' : 'Done';
@@ -90,6 +97,7 @@ class Main extends Component {
             <List key={i} id={type} items={item} title={title} dragStartHandler={this.onDragStart} dragOverItemHandler={this.onDragOverItem} dragOverHandler={this.onDragOver}></List>
           )
         }) }
+        </div>
       </div>
     )
   }

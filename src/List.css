@@ -1,0 +1,31 @@
+.list-header {
+  background: #777;
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  padding: 20px;
+}
+
+.list-header h1 {
+  flex:1 ;
+}
+
+.list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.list-items li {
+  background: #eee;
+  margin: 2px 0;
+  padding: 1.5em 1em;
+  cursor: move;
+}
+
+.list-items .placeholder {
+  color: #ccc;
+  font-style: italic;
+  cursor: not-allowed;
+}

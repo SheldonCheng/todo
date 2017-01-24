@@ -2,4 +2,40 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #ccc;
+}
+
+#root {
+  padding: 50px;
+}
+
+.header {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.header-counter span{
+  text-align: center;
+  display: block;
+  font-size: 20px;
+}
+
+.counter {
+  border: 1px solid;
+  text-transform: uppercase;
+  width: 100px;
+  text-align: center;
+  padding: 0.75em 0.5em 0.5em;
+  background: #fff;
+  line-height: 1.5;
+  color: #666;
+  float: right;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.4) inset;
+}
+
+.counter strong {
+  display: block;
+  color: #000;
+  font-size: 20px;
 }
