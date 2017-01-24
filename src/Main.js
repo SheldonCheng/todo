@@ -43,30 +43,28 @@ class Main extends Component {
   
   onDragOntoItem(e){
     e.preventDefault();
-    var fromGroup = this.draggedFrom;
-    var toGroup = e.currentTarget.parentElement.parentElement.id;
-    var draggedItem = this.state[fromGroup].find( (el) => el.id === this.dragId);
-    var draggedItemIndex = this.state[fromGroup].indexOf(draggedItem);
-    var newFromGroup = this.state[fromGroup].slice(0);
-    newFromGroup.splice(draggedItemIndex, 1);
-    var overItem = this.state[toGroup].find( (el) => el.id === e.currentTarget.id);
-    var overItemIndex = this.state[toGroup].indexOf(overItem);
+    var fromGroupId = this.draggedFrom;
+    var toGroupId = e.currentTarget.parentElement.parentElement.id;
+    var draggedItem = this.state[fromGroupId].find( (el) => el.id === this.dragId);
+    var draggedItemIndex = this.state[fromGroupId].indexOf(draggedItem);
+    var overItem = this.state[toGroupId].find( (el) => el.id === e.currentTarget.id);
+    var overItemIndex = this.state[toGroupId].indexOf(overItem);
 
-    if (fromGroup === toGroup) {
-      const sortedArr = newFromGroup.slice(0,overItemIndex);
-      sortedArr.push(draggedItem);
-      sortedArr.push(...(newFromGroup.slice(overItemIndex)));
-      this.setState({ [fromGroup] : sortedArr});
+    var newFromGroupArr = this.state[fromGroupId].slice(0);
+    newFromGroupArr.splice(draggedItemIndex, 1); // Remove dragged item from its array
+    var newToGroupArr = fromGroupId === toGroupId ? newFromGroupArr.slice(0) : this.state[toGroupId].slice(0); // if within same group, create newToGroupArr from existing spliced array, otherwise clone toGroup 
+    // start building resultant group
+    var finalGroupArr = newToGroupArr.slice(0,overItemIndex);
+    finalGroupArr.push(draggedItem);
+    finalGroupArr.push(...(newToGroupArr.slice(overItemIndex)));    
+
+    if (fromGroupId === toGroupId) {
+      this.setState({ [fromGroupId] : finalGroupArr});
     }
     else {
-      this.draggedFrom = toGroup;
-      const newToGroup = this.state[toGroup].slice(0);
-      const sortedArr = newToGroup.slice(0,overItemIndex);
-      sortedArr.push(draggedItem);
-      sortedArr.push(...(newToGroup.slice(overItemIndex)));
-      this.setState({ [fromGroup] : newFromGroup, [toGroup] : sortedArr });
+      this.draggedFrom = toGroupId;
+      this.setState({ [fromGroupId] : newFromGroupArr, [toGroupId] : finalGroupArr });
     }
-
 
   }
   
