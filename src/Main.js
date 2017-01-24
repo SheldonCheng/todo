@@ -16,8 +16,7 @@ class Main extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onDragStart = this.onDragStart.bind(this);
-    this.onDragOver = this.onDragOver.bind(this);
-    this.onDragOverItem = this.onDragOverItem.bind(this);
+    this.onDragOntoItem = this.onDragOntoItem.bind(this);
   }
   
   onChange(e) {
@@ -41,13 +40,8 @@ class Main extends Component {
     this.draggedFrom = e.target.parentElement.parentElement.id;
     e.dataTransfer.setData("text/html", e.currentTarget);
   }
-
   
-  onDragOver(e) {
-    e.preventDefault();
-  }
-  
-  onDragOverItem(e){
+  onDragOntoItem(e){
     e.preventDefault();
     var fromGroup = this.draggedFrom;
     var toGroup = e.currentTarget.parentElement.parentElement.id;
@@ -94,7 +88,7 @@ class Main extends Component {
           const type = i === 0 ? 'todo' : i === 1 ? 'progress' : 'done';
           const title = i === 0 ? 'To do' : i === 1 ? 'In Progress' : 'Done';
           return (
-            <List key={i} id={type} items={item} title={title} dragStartHandler={this.onDragStart} dragOverItemHandler={this.onDragOverItem} dragOverHandler={this.onDragOver}></List>
+            <List key={i} id={type} items={item} title={title} dragStartHandler={this.onDragStart} dragOntoItemHandler={this.onDragOntoItem} ></List>
           )
         }) }
         </div>
